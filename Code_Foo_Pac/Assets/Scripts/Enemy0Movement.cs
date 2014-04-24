@@ -27,8 +27,8 @@ public class Enemy0Movement : MonoBehaviour {
 
 		frontCheck = transform.Find("frontCheck").transform;
 
-		xStartPosition = transform.position.x;
-		yStartPosition = transform.position.y;
+		xStartPosition = Mathf.RoundToInt (transform.position.x);
+		yStartPosition = Mathf.RoundToInt (transform.position.y);
 	}
 
 	void FixedUpdate () {
@@ -64,17 +64,17 @@ public class Enemy0Movement : MonoBehaviour {
 			transform.Rotate (Vector3.forward * rotation);
 			tilesTravelled = 0;
 		}
-
+		
 		rigidbody2D.velocity = new Vector2(xSpeed * direction, ySpeed * direction);
 
-		currentXPos = Mathf.Round (transform.position.x) - xStartPosition;
-		currentYPos = Mathf.Round (transform.position.y) - yStartPosition;
+		currentXPos = Mathf.RoundToInt (transform.position.x) - xStartPosition;
+		currentYPos = Mathf.RoundToInt (transform.position.y) - yStartPosition;
 
-		if (currentXPos > 1 || currentYPos > 1 || currentXPos < -1 || currentYPos < -1) {
+		if (currentXPos == 1 || currentYPos == 1 || currentXPos == -1 || currentYPos == -1) {
 			//Debug.Log ("0 new tile");
 			tilesTravelled += 1;
-			xStartPosition = transform.position.x;
-			yStartPosition = transform.position.y;
+			xStartPosition = Mathf.RoundToInt (transform.position.x);
+           	yStartPosition = Mathf.RoundToInt (transform.position.y);
 		}
 
 	}

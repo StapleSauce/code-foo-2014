@@ -23,7 +23,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private Animator anim;					// Reference to the player's animator component.
 	
-	
+	private int direction = 1;
+
 	void Awake()
 	{
 		// Setting up references.
@@ -95,11 +96,12 @@ public class PlayerMovement : MonoBehaviour {
 			// Set the Jump animator trigger parameter.
 			anim.SetBool("Jump", true);
 
-			if(wall)
-				rigidbody2D.AddForce(new Vector2(jumpForce, jumpForce));
-			else
+			if(wall) {
+				rigidbody2D.AddForce(new Vector2(jumpForce * direction, jumpForce));
+			} else {
 				// Add a vertical force to the player.
 				rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+			}
 			
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
@@ -111,6 +113,7 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		// Switch the way the player is labelled as facing.
 		facingRight = !facingRight;
+		direction = direction * -1;
 		
 		// Multiply the player's x local scale by -1.
 		Vector3 theScale = transform.localScale;

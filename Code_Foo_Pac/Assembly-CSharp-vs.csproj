@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Enemy0Movement.cs" />
      <Compile Include="Assets\Scripts\Enemy1Movement.cs" />
+     <Compile Include="Assets\Scripts\Enemy2Movement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
