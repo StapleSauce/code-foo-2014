@@ -31,8 +31,8 @@ public class Enemy1Movement : MonoBehaviour {
 		//leftCheck = transform.Find("leftCheck").transform;
 		//rightCheck = transform.Find("rightCheck").transform;
 
-		xStartPosition = Mathf.RoundToInt(transform.position.x);
-		yStartPosition = Mathf.RoundToInt(transform.position.y);
+		xStartPosition = Mathf.FloorToInt(transform.position.x);
+		yStartPosition = Mathf.FloorToInt(transform.position.y);
 
 		xSpeed = Mathf.Round (Random.value);
 		direction = Mathf.Round(Random.value);
@@ -70,14 +70,22 @@ public class Enemy1Movement : MonoBehaviour {
 
 		rigidbody2D.velocity = new Vector2(xSpeed * direction, ySpeed * direction);
 
-		currentXPos = Mathf.RoundToInt (transform.position.x) - xStartPosition;
-		currentYPos = Mathf.RoundToInt (transform.position.y) - yStartPosition;
+		currentXPos = Mathf.FloorToInt (transform.position.x) - xStartPosition;
+		currentYPos = Mathf.FloorToInt (transform.position.y) - yStartPosition;
 		
 		if (currentXPos == 1 || currentYPos == 1 || currentXPos == -1 || currentYPos == -1) {
 			//Debug.Log ("1 new tile");
+			//Debug.Log(Mathf.FloorToInt(transform.position.x));
 			tilesTravelled += 1;
-			xStartPosition = Mathf.RoundToInt (transform.position.x);
-			yStartPosition = Mathf.RoundToInt (transform.position.y);
+			xStartPosition = Mathf.FloorToInt (transform.position.x);
+			yStartPosition = Mathf.FloorToInt (transform.position.y);
 		}
+	}
+
+	void OnCollisionEnter2D(Collision2D coll) {
+
+		if (coll.gameObject.tag == "obstacle")
+			//Debug.Log ("hit");
+			direction = direction * -1;
 	}
 }
