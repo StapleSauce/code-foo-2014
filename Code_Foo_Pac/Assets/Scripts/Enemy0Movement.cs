@@ -36,33 +36,36 @@ public class Enemy0Movement : MonoBehaviour {
 		//Debug.Log (xSpeed);
 		Debug.DrawLine (transform.position, frontCheck.position, Color.green, 0.05f);
 
-		//need to add collision logic
+		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position);
+		
+		// Check each of the colliders.
+		foreach (Collider2D c in frontHits) {
+			// If any of the colliders is an Obstacle...
+			if (c.tag == "obstacle") {
 
-		//if xAxis is true and yAxis is false ySpeed should be set yAxis should be set
-		if (tilesTravelled > 4) {
+				if (xAxis ^ yAxis) {
+					xSpeed = 0f;
+					ySpeed = 2f;
+					//direction = direction * -1;
+					//direction = Mathf.Round (Random.value);
+					yAxis = !yAxis;
+				} else {
+					xSpeed = 2f;
+					ySpeed = 0f;
+					direction = direction * -1;
+					//direction = Mathf.Round (Random.value);
+					xAxis = !xAxis;
+				}
 
-			if (xAxis ^ yAxis) {
-				xSpeed = 0f;
-				ySpeed = 2f;
-				//direction = direction * -1;
-				//direction = Mathf.Round (Random.value);
-				yAxis = !yAxis;
-			} else {
-				xSpeed = 2f;
-				ySpeed = 0f;
-				direction = direction * -1;
-				//direction = Mathf.Round (Random.value);
-				xAxis = !xAxis;
+				if (direction >= 0) {
+					direction = 1f;
+				} else {
+					direction = -1f;
+				}
+
+				transform.Rotate (Vector3.forward * rotation);
+				tilesTravelled = 0;
 			}
-
-			if (direction >= 0) {
-				direction = 1f;
-			} else {
-				direction = -1f;
-			}
-
-			transform.Rotate (Vector3.forward * rotation);
-			tilesTravelled = 0;
 		}
 		
 		rigidbody2D.velocity = new Vector2(xSpeed * direction, ySpeed * direction);
