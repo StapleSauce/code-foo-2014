@@ -98,18 +98,18 @@ public class Enemy1Movement : MonoBehaviour {
 		switch (moves[randomMove]) {
 			case "moveUp":
 				xSpeed = 0f;
-				ySpeed = 2f;
+				ySpeed = 3f;
 				break;
 			case "moveDown":
 				xSpeed = 0f;
-				ySpeed = -2f;
+				ySpeed = -3f;
 				break;
 			case "moveRight":
-				xSpeed = 2f;
+				xSpeed = 3f;
 				ySpeed = 0f;
 				break;
 			case "moveLeft":
-				xSpeed = -2f;
+				xSpeed = -3f;
 				ySpeed = 0f;
 				break;
 		}

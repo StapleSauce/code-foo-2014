@@ -121,13 +121,13 @@ public class Enemy2Movement : MonoBehaviour {
 						if(playerYPosition < 0) {
 							//Debug.Log("wrong");
 							xSpeed = 0;
-							ySpeed = -2;
+							ySpeed = -3;
 							bestMove = true;
 						}
 					} else {
 						if(playerYPosition < 0) {
 							xSpeed = 0;
-							ySpeed = -2;
+							ySpeed = -3;
 						}
 					}
 				}
@@ -139,13 +139,13 @@ public class Enemy2Movement : MonoBehaviour {
 					if (Mathf.Abs(playerYPosition) > Mathf.Abs(playerXPosition)) {
 						if(playerYPosition > 0) {
 							xSpeed = 0;
-							ySpeed = 2;
+							ySpeed = 3;
 							bestMove = true;
 						}
 					} else {
 						if(playerYPosition > 0) {
 							xSpeed = 0;
-							ySpeed = 2;
+							ySpeed = 3;
 						}
 					}
 				}
@@ -156,13 +156,13 @@ public class Enemy2Movement : MonoBehaviour {
 					//wallRight = true;
 					if (Mathf.Abs(playerXPosition) > Mathf.Abs(playerYPosition)) {
 						if(playerXPosition < 0) {
-							xSpeed = -2;
+							xSpeed = -3;
 							ySpeed = 0;
 							bestMove = true;
 						}
 					} else {
 						if(playerYPosition < 0) {
-							xSpeed = -2;
+							xSpeed = -3;
 							ySpeed = 0;
 						}
 					}
@@ -174,13 +174,13 @@ public class Enemy2Movement : MonoBehaviour {
 					//wallLeft = true;
 					if (Mathf.Abs(playerXPosition) > Mathf.Abs(playerYPosition)) {
 						if(playerXPosition > 0) {
-							xSpeed = 2;
+							xSpeed = 3;
 							ySpeed = 0;
 							bestMove = true;
 						}
 					} else {
 						if(playerYPosition > 0) {
-							xSpeed = 2;
+							xSpeed = 3;
 							ySpeed = 0;
 						}
 					}
@@ -193,18 +193,18 @@ public class Enemy2Movement : MonoBehaviour {
 			switch (moves[0]) {
 			case "moveUp":
 				xSpeed = 0;
-				ySpeed = 2;
+				ySpeed = 3;
 				break;
 			case "moveDown":
 				xSpeed = 0;
-				ySpeed = -2;
+				ySpeed = -3;
 				break;
 			case "moveRight":
-				xSpeed = 2;
+				xSpeed = 3;
 				ySpeed = 0;
 				break;
 			case "moveLeft":
-				xSpeed = -2;
+				xSpeed = -3;
 				ySpeed = 0;
 				break;
 			}
