@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour {
 	[HideInInspector]
 	public bool jump = false;				// Condition for whether the player should jump.
 	
-	public float moveForce = 365f;			// Amount of force added to move the player left and right.
-	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
+	public float moveForce = 200f;			// Amount of force added to move the player left and right.
+	public float maxSpeed = 8f;				// The fastest the player can travel in the x axis.
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
 
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour {
 			anim.SetBool("Jump", true);
 
 			if(wall) {
-				rigidbody2D.AddForce(new Vector2(jumpForce * direction, jumpForce));
+				rigidbody2D.AddForce(new Vector2((jumpForce / 1.5f) * direction, jumpForce));
 			} else {
 				// Add a vertical force to the player.
 				rigidbody2D.AddForce(new Vector2(0f, jumpForce));

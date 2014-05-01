@@ -63,7 +63,7 @@ public class Enemy0Movement : MonoBehaviour {
 					direction = -1f;
 				}
 
-				transform.Rotate (Vector3.forward * rotation);
+				transform.Rotate(0, 0, rotation);
 				tilesTravelled = 0;
 			}
 		}

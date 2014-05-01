@@ -44,8 +44,8 @@ public class Enemy2Movement : MonoBehaviour {
 		yStartPosition = Mathf.FloorToInt(transform.position.y);
 
 		
-		playerXPosition = GameObject.Find("player").transform.position.x - xStartPosition;
-		playerYPosition = GameObject.Find("player").transform.position.y - yStartPosition;
+		playerXPosition = GameObject.Find("player").transform.position.x - xStartPosition + 1;
+		playerYPosition = GameObject.Find("player").transform.position.y - yStartPosition + 1;
 
 		Move();
 		
@@ -105,7 +105,7 @@ public class Enemy2Movement : MonoBehaviour {
 			moves.Add("moveLeft");
 		}
 
-		Debug.Log(moves.Count);
+		//Debug.Log(moves.Count);
 
 		//only change direction when I am able to
 		if (moves.Count > 1) {

@@ -49,7 +49,9 @@
      <Compile Include="Assets\Scripts\Enemy0Movement.cs" />
      <Compile Include="Assets\Scripts\Enemy1Movement.cs" />
      <Compile Include="Assets\Scripts\Enemy2Movement.cs" />
+     <Compile Include="Assets\Scripts\Grid.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <None Include="Assets\Maps\map.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
