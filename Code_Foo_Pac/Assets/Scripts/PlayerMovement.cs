@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void Update()
 	{
+
 		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 		wall = Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Wall"));
@@ -119,5 +120,15 @@ public class PlayerMovement : MonoBehaviour {
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	void OnCollisionEnter2D(Collision2D other) {
+		
+		//Debug.Log ("hit");
+		if (other.gameObject.tag == "enemy") {
+			anim.SetTrigger("Dead");
+			Destroy(this.gameObject);
+			Time.timeScale = 0;
+		}
 	}
 }

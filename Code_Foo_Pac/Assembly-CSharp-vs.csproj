@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Enemy0Movement.cs" />
      <Compile Include="Assets\Scripts\Enemy1Movement.cs" />
      <Compile Include="Assets\Scripts\Enemy2Movement.cs" />
+     <Compile Include="Assets\Scripts\GameState.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\pelletCollect.cs" />
