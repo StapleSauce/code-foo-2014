@@ -10,6 +10,7 @@ IGN CODE FOO 2014 SUBMISSION
 		</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel='stylesheet' type='text/css' href='css/code-foo-2014.css' />
 	</head>
 	<body>
 		<!--container-->
@@ -21,15 +22,19 @@ IGN CODE FOO 2014 SUBMISSION
 				</header>
 				<!--main-->
 				<div id="main">
+					<section>
+						<h1>About Me</h1>
+						<iframe width="560" height="315" src="//www.youtube.com/embed/he2Y_msb5aI?rel=0" frameborder="0" allowfullscreen></iframe>
+					</section>
 					<!--word search solver-->
 					<section>
 						<h1>Cross Word</h1>
 						<div>
-							<input type="button" value="Solve" onclick="createCharArray()"/>
+							<textarea id="wordList"></textarea>
+							<input type="button" value="Solve" onclick="wordList()"/>
 							<input type="reset" value="Reset" onclick="reset()"/>
 						</div>
-						<br />
-						<div class="cross-word">
+						<div id="cross-word">
 						</div>
 					</section>
 					<!--end of word search solver-->
@@ -37,6 +42,8 @@ IGN CODE FOO 2014 SUBMISSION
 				<!--end of main-->
 			</div>
 			<!--end of content-->
+			<footer>
+			</footer>
 		</div>
 		<!--end of container-->
 		<script type="text/javascript" src="js/cross-word.js"></script>

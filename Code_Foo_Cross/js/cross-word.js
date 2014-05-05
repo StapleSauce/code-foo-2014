@@ -1,163 +1,156 @@
 
-var wordArrayList = [];
-var charArray = {};
+var rows = 20;
+var columns = 20;
 
-function calcGrid() {
+var coordinatesArray;
+//rows
+coordinatesArray = new Array(rows);
+
+//allows the coordinates array to be copied
+Array.prototype.clone = function() {
+   var coordinatesArray = this.slice(0);
+   for( var i = 0; i < this.length; i++ ) {
+        if( this[i].clone ) {
+            //recursion
+            coordinatesArray[i] = this[i].clone();
+        }
+    }
+    return coordinatesArray;
+}
+
+function drawGrid(coordinatesArray) {
+	
+	var display = "";
+	
+	display += "<table>";
+	
+	for (rowCount = 0; rowCount < 20; rowCount ++) {
+		display += '<tr>';
+		//loop through each column (horizontal check)
+		for (columnCount = 0; columnCount < 20; columnCount ++) {
+			display += '<td>' + coordinatesArray[rowCount][columnCount] + '</td>';
+			//console.log(coordinatesArray[rowCount][columnCount]);
+		}
+		
+		display += "</tr>";
+	}
+	
+	display += "</table>";
+	
+	document.getElementById("cross-word").innerHTML = display;
+}
+
+function calcGrid(word, direction) {
 	/*
-	the class should allow me to reference the cell using jquery in order to place the character
-	
-		table
-		for rows
-			tr class row-count
-				for columns
-					td class column count
-					close column
-			close row
-		end table
-	*/
-}
-
-function createCharArray() {
-	//create array of captial letters
-	var a = 65;
-	for (var i = 0; i<26; i++) {
-		charArray[String.fromCharCode(a + i)] = {"occurance": 0};
-	}
-	
-	processOccurance("AARDVARK");
-	processOccurance("ANIMAL");
-}
-/*
-//create the charArray object
-//store the character occurance
-//and the words that contain this character
-charArray["A"] = {"occurance": 3,"words": "aardvark"}
-"A":[
-		{
-			"occurance":[number of times char occurs in word],
-			"words":["word1","word1"]
-		}
-	]
-*/
-function processOccurance(word) {
-
-	var characterOccurances = 0;
-	var words = new Array();
-	var position = "";
-	var positions = new Array();
-	
-	//check how many times a character occurs add to the count store the word
-	for(var character in charArray) {
-		//reset words array
-		words = new Array();
-		positions = new Array();
-		position = "";
-		//get the words attached to the current character
-		if(charArray[character].words) {
-			words = charArray[character].words;
-		}
-		if(charArray[character].char_pos) {
-			positions = charArray[character].char_pos;
-		}
-		for (var i = 0; i < word.length; i++) {
-			//positions = new Array();
-			characterOccurances = charArray[character].occurance
-			if (word[i] == character) {
-				characterOccurances ++;
-				position += i + ',';
-				//console.log(position);
-					
-				//check if word is in list
-				if(words.indexOf(word) == -1) {
-					//add this word and the character's postion to the list
-					//positions[word] = i;
-					//words.push(positions);
-					words.push(word);
-				}
-			}
+	============================================================
+	loop through rows
+	loop through columns
+		if the tempcoordinates are blank
+			loop through word
+				tempcoordinates position = character at position
+				word = character at position
+		else
+			unset coordinates break loop at this position
 			
-			charArray[character] = {"occurance": characterOccurances};
-		}
-		
-		if(position != "") {
-			positions.push(position);
-		}
-		
-		charArray[character] = {"occurance": characterOccurances, "words": words, "char_pos": positions};
-	}
+			if word is complete
+				set current coordinates to temp coordinates
+	============================================================
+	*/
 	
-	console.log(charArray);
-	createIntersect();
-}
-
-//get most common occurance
-//check words length
-//select two random words from a character
-//remove word from array
-function createIntersect() {
-
-	var words = new Array();
-	var word = "";
-	var mostFrequentCharacter = "";
-	var mostFrequentOccurance = 0;
-	var index = 0;
+	var tempCoordinatesArray = new Array();
+	var continueSearch = true;
+	var i = 0;
+	word = word.toUpperCase();
+	var tempWord = "";
 	
-	//loop through characters
-	for(var character in charArray) {
-		//get the words attached to the character
-		words = charArray[character].words;
-		//if there are more occurances under the current character
-		if (mostFrequentOccurance < charArray[character].occurance) {
-			//if there are still words attached to that character
-			if(words.length) {
-				//set most occurances
-				mostFrequentOccurance = charArray[character].occurance;
-				mostFrequentCharacter = character;
-			}
-		}
-	}
+	tempCoordinatesArray = coordinatesArray.clone();
 	
-	words = charArray[mostFrequentCharacter].words;
-	
-	var coordinatesArray = new Array();
-	//rows
-	coordinatesArray[mostFrequentCharacter] = new Array(20);
-	//columns
-	coordinatesArray[mostFrequentCharacter][20] = new Array(20);
-	
-	//loop through each row (vertical check)
 	for (rowCount = 0; rowCount < 20; rowCount ++) {	
 		//loop through each column (horizontal check)
 		for (columnCount = 0; columnCount < 20; columnCount ++) {
+			//if (tempCoordinatesArray[rowCount][columnCount] == "") {
 			
+				tempColumnCount = columnCount;
+				tempRowCount = rowCount;
+					
+				while (continueSearch) {
+					
+					if ((tempCoordinatesArray[tempRowCount][tempColumnCount] == word[i]) || ((tempCoordinatesArray[tempRowCount][tempColumnCount] == "") && (tempRowCount < 20) && (tempColumnCount < 20))) {
+						tempCoordinatesArray[tempRowCount][tempColumnCount] = word[i];
+						tempWord += word[i]
+						switch(direction) {
+							case "across":
+								tempColumnCount ++;
+								break;
+							case "down":
+								tempRowCount ++;
+								break;
+						}
+						i++;
+					} else {
+						//reset temp coordinates
+						tempCoordinatesArray = coordinatesArray.clone();
+						continueSearch = false;
+					}
+					if(tempWord == word) {
+						coordinatesArray = tempCoordinatesArray;
+						columnCount = 20;
+						rowCount = 20;
+						continueSearch = false
+					}
+				}
+			//}
+			
+			i = 0;
+			tempWord = "";
+			continueSearch = true;
 		}
 	}
 	
-	//while index of != -1
-	//check if coordinates are still valid
-	//if not index of +1 becomes the start position (get next occurance in string)
-	//while (word.IndexOf(mostFrequentCharacter) != -1) {
-		//console.log(charArray[mostFrequentCharacter]);
-		//coordinates[word] = {"coordinates": [1, 1]};
-		
-	//word = words[0];
-	//var coordinatesArray[column] = new Array(columns);
-	//var coordinatesArray[row] = new Array(rowss);
-	
-	//mostFrequentOccurance --;
-	//coordinateList.push(coordinates);
-	
-	//console.log(charArray);
+	console.log(coordinatesArray);
+	drawGrid(coordinatesArray);
+
 }
 
-//loop through all words in the list
+//initialize the grid
+function initGrid() {
+	
+	for (var rowCount = 0; rowCount < rows; rowCount ++) {
+		//this effectively makes the wordsearch act as a grid
+		coordinatesArray[rowCount] = new Array(columns);
+		//populate the puzzle and coordinates arrays
+		for (var columnCount = 0; columnCount < columns; columnCount ++)
+		{
+			coordinatesArray[rowCount][columnCount] = "";
+		}
+	}
+}
+
+//loop through the word list
 function wordList() {
 	//for loop should be able to adapt this from my crossword solver
-}
-
-//initialize the charArray
-//initialize the grid
-//call the word loop
-function init() {
+	var wordList = "";
+	var wordArray = new Array();
+	var direction = "across";
 	
+	wordList = document.getElementById("wordList").value;
+	wordArray = wordList.split("\n");
+	
+	initGrid();
+	
+	//wordArray = ["Health", "Score", "Zerg", "Assassin", "Reload", "Inky", "Pylon", "Stryder", "Level", "Bazooka", "Blunderbuss", "Killtacular", "Yellowbrate", "Heist", "Duck", "Huckleberry", "Halo", "LosSantos", "Flappy", "Mushroom", "Atrus", "Horde", "Roivas", "Ganondorf", "KingGraham", "Protoman", "Hydralisk", "Shepard", "NukaCola", "Plasmid", "Wouldyoukindly", "Ellie", "Metroid", "XinZhao", "Zork"];
+	
+	wordArray.sort(function(a, b){
+	  return b.length - a.length; // ASC -> a - b; DESC -> b - a
+	});
+
+	for ( wordCount = 0; wordCount < wordArray.length; wordCount ++) {
+		
+		if (wordCount % 2) {
+			direction = "across";
+		} else {
+			direction = "down";
+		}
+		calcGrid(wordArray[wordCount], direction);
+	}
 }
