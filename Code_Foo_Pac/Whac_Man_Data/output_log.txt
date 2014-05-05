@@ -11,8 +11,20 @@ Platform assembly: C:\Users\Mat\Documents\GitHub\code-foo-2014\Code_Foo_Pac\Whac
 Loading C:\Users\Mat\Documents\GitHub\code-foo-2014\Code_Foo_Pac\Whac_Man_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: C:\Users\Mat\Documents\GitHub\code-foo-2014\Code_Foo_Pac\Whac_Man_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\Mat\Documents\GitHub\code-foo-2014\Code_Foo_Pac\Whac_Man_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.051 seconds
+- Completed reload, in  0.111 seconds
 desktop: 1680x1050 120Hz; virtual: 1680x1050 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\Mat\Documents\GitHub\code-foo-2014\Code_Foo_Pac\Whac_Man_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 18.529902 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 169.
+Total: 0.643752 ms (FindLiveObjects: 0.008191 ms CreateObjectMapping: 0.009898 ms MarkObjects: 0.088746 ms  DeleteObjects: 0.002389 ms)
+
+UnloadTime: 7.433191 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 169.
+Total: 0.625320 ms (FindLiveObjects: 0.006826 ms CreateObjectMapping: 0.009215 ms MarkObjects: 0.073727 ms  DeleteObjects: 0.002389 ms)
+
